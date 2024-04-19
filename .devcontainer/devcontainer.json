@@ -1,4 +1,32 @@
 {
-  "name": "Ubuntu 22.04",
-  "image": "ubuntu:22.04"
+  "build": {
+      "dockerfile": "./Dockerfile",
+      "context": "."
+  },
+  "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {
+          "username": "codespace",
+          "userUid": "1000",
+          "userGid": "1000"
+      },
+      "ghcr.io/devcontainers/features/git:1": {
+          "version": "latest",
+          "ppa": "false"
+      },
+      "ghcr.io/devcontainers/features/docker-in-docker:2": {
+          "version": "latest"
+      },
+      "./local-features/setup-user": "latest"
+  },
+  "overrideFeatureInstallOrder": [
+      "ghcr.io/devcontainers/features/common-utils",
+      "ghcr.io/devcontainers/features/git",
+      "ghcr.io/devcontainers/features/docker-in-docker",
+      "./local-features/setup-user"
+  ],
+  "remoteUser": "codespace",
+  "containerUser": "codespace",
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
 }
